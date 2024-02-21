@@ -218,6 +218,7 @@
         </div>
     </div>
 
+    {{-- our clients  --}}
     <div style="background-image:url('https://w0.peakpx.com/wallpaper/91/270/HD-wallpaper-happy-faces-black-3d-abstract-cg.jpg')"
         class="container card">
         <h3 class="text-center text-white p-3">Our Clients</h3>
@@ -225,6 +226,7 @@
             <img class="responsiveWidth" src="https://www.hameemgroup.net/images/OUR-BUYERS-NEW.png" alt="">
         </div>
     </div>
+    {{-- our clients  --}}
 
 
     <div class="mt-5"></div>
