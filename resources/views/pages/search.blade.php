@@ -1,6 +1,8 @@
-@extends('welcome')
+@extends('portfolio.master')
+
 
 @section('content')
+
 <link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/shop_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/shop_responsive.css')}}">
 

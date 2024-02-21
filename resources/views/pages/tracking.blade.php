@@ -1,7 +1,7 @@
-@extends('welcome')
+@extends('portfolio.master')
+
 
 @section('content')
- 
 
 <div class="contact_form">
 	<div class="container">

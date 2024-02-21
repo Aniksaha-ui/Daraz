@@ -15,8 +15,18 @@ Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::get('/', function () {
+    // return view('portfolio.master');
+
     return view('pages.index');
 })->name('Home');
+
+Route::get('/portfolio', function () {
+    // return view('portfolio.master');
+
+    return view('portfolio.portfoliopage');
+})->name('portfolio');
+
+
 
 Auth::routes();
 

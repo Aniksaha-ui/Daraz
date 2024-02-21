@@ -112,97 +112,7 @@
 
         <!-- Header Main -->
 
-        <div class="header_main">
-            <div class="container">
-                <div class="row">
-
-                    <!-- Logo -->
-                    <div class="col-lg-2 col-sm-3 col-3 order-1">
-                        <div class="logo_container">
-                            <div class="logo"><a href="{{url('/')}}">XIXOTECH</a></div>
-                        </div>
-                    </div>
-
-                    <!-- Search -->
-                    <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-                        <div class="header_search">
-                            <div class="header_search_content">
-                                <div class="header_search_form_container">
-
-                                    <form action="{{ route('product.search') }}" method="post" class="header_search_form clearfix">
-                                        @csrf
-                                        <input type="search" name="search" required="required" class="header_search_input" placeholder="Search for products...">
-                                        <div class="custom_dropdown">
-                                            <div class="custom_dropdown_list">
-                                                <span class="custom_dropdown_placeholder clc">All Categories</span>
-                                                 @php 
-                                                    $category=DB::table('categories')->get();
-                                                @endphp
-
-                                                
-                                                <i class="fas fa-chevron-down"></i>
-                                                <ul class="custom_list clc">
-                                                @foreach($category as $row)
-                                                
-                                                  
-                                                     <li><a class="clc" href="#">{{$row->category_name}}</a></li>
-                                                    
-                                               @endforeach
-                                                 </ul>
-
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('fontend/images/search.png')}}" alt=""></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Wishlist -->
-                    <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-                        <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-
-                                @guest
-
-                                @else
-
-                                     @php
-
-                                        $wishlist=DB::table('wishlists')->where('user_id',Auth::id())->get();
-
-                                     @endphp
-
-                                      <div class="wishlist_icon"><img src="{{asset('fontend/images/heart.png')}}" alt=""></div>
-                                     <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="{{route('user.wishlist')}}">Wishlist</a></div>
-                                        <div class="wishlist_count" style="color: black;">{{count($wishlist)}}</div>
-                                     </div>
-
-                                @endguest
-
-                              
-                            </div>
-
-                            <!-- Cart -->
-                            <div class="cart">
-                                <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                    <div class="cart_icon">
-                                        <img src="{{asset('fontend/images/cart.png')}}" alt="">
-                                        <div class="cart_count"><span>{{Cart::count()}}</span></div>
-                                    </div>
-                                    <div class="cart_content">
-                                        <div class="cart_text"><a href="{{route('show.cart')}}">Cart</a></div>
-                                        <div class="cart_price" style="color: black;">Tk.{{Cart::subtotal()}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
         
         <!-- Main Navigation -->
 
@@ -358,7 +268,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('fontend/plugins/easing/easing.js')}}"></script>
 
 <script src="{{asset('fontend/js/custom.js')}}"></script>
-<script src="{{asset('fontend/js/cart_custom.js')}}"></script>
+{{-- <script src="{{asset('fontend/js/cart_custom.js')}}"></script> --}}
 
 
 

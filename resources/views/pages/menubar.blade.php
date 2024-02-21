@@ -58,11 +58,6 @@
 
                             <!-- Menu Trigger -->
 
-                            <div class="menu_trigger_container ml-auto">
-                                <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
-                                    <a href="{{route('show.cart')}}" style="color: black;">Cart</a>
-                                </div>
-                            </div>
 
                         </div>
                     </div>

@@ -1,7 +1,8 @@
-@extends('welcome')
+@extends('portfolio.master')
+
 
 @section('content')
-@include('pages.menubar')
+
 <link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/blog_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/blog_responsive.css')}}">
 

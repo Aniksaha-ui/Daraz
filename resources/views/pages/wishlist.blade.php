@@ -1,4 +1,5 @@
-@extends('welcome')
+@extends('portfolio.master')
+
 
 @section('content')
 
