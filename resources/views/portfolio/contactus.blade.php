@@ -3,6 +3,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/contact_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/contact_responsive.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/blog_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/blog_responsive.css') }}">
+
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg">
+        </div>
+        <div class="home_overlay"></div>
+        <div class="home_content d-flex flex-column align-items-center justify-content-center">
+            <h2 class="home_title">Technological Blog</h2>
+
+        </div>
+    </div>
+
+
 
     <div class="contact_info">
         <div class="container">

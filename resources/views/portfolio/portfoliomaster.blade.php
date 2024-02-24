@@ -127,7 +127,7 @@
                                         <ul class="standard_dropdown main_nav_dropdown">
                                             <li><a href={{ route('portfolio') }}>Portfolio<i
                                                         class="fas fa-chevron-down"></i></a></li>
-                                            <li class="hassubs">
+                                            {{-- <li class="hassubs">
                                                 <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
                                                 <ul>
                                                     <li>
@@ -192,10 +192,10 @@
                                                     <li><a href="contact.html">Contact<i
                                                                 class="fas fa-chevron-down"></i></a></li>
                                                 </ul>
-                                            </li>
-                                            <li><a href={{ route('show.cart') }}>cart<i
-                                                        class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a>
+                                            </li> --}}
+                                            <li><a href="#">Ecommerce<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href={{ route('contactus') }}>Contact Us<i
+                                                        class="fas fa-chevron-down"></i></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -232,11 +232,11 @@
                                 <div class="page_menu_search">
                                     <form action="#">
                                         <input type="search" required="required" class="page_menu_search_input"
-                                            placeholder="Search for products...">
+                                            placeholder="Search...">
                                     </form>
                                 </div>
                                 <ul class="page_menu_nav">
-                                    <li class="page_menu_item has-children">
+                                    {{-- <li class="page_menu_item has-children">
                                         <a href="#">Language<i class="fa fa-angle-down"></i></a>
                                         <ul class="page_menu_selection">
                                             <li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
@@ -255,11 +255,11 @@
                                             <li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                     <li class="page_menu_item">
                                         <a href={{ route('portfolio') }}>Portfolio<i class="fa fa-angle-down"></i></a>
                                     </li>
-                                    <li class="page_menu_item has-children">
+                                    {{-- <li class="page_menu_item has-children">
                                         <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
                                         <ul class="page_menu_selection">
                                             <li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
@@ -300,10 +300,12 @@
                                             <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
                                             <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
                                         </ul>
-                                    </li>
-                                    <li class="page_menu_item"><a href="blog.html">blog<i
-                                                class="fa fa-angle-down"></i></a></li>
-                                    <li class="page_menu_item"><a href="contact.html">contact<i
+                                    </li> --}}
+                                    {{-- <li class="page_menu_item"><a href="blog.html">blog<i
+                                                class="fa fa-angle-down"></i></a>
+                                            </li> --}}
+
+                                    <li class="page_menu_item"><a href={{ route('contactus') }}>contact<i
                                                 class="fa fa-angle-down"></i></a></li>
                                 </ul>
 
