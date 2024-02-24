@@ -42,7 +42,7 @@
 
 @section('content')
     {{-- slider  --}}
-    <div class="banner_2" style="margin-top: -20px">
+    <div class="banner_2" style="margin-top: -12px">
         <div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
         <div class="banner_2_container">
             <div class="banner_2_dots"></div>
@@ -63,13 +63,15 @@
                                             Maecenas fermentum laoreet.</div>
                                         <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i>
                                         </div>
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
+                                        <div class="button banner_2_button"><a href="#">Read More</a></div>
                                     </div>
 
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-12 fill_height">
                                     <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt="">
+                                        <div class="banner_2_image"><img
+                                                src="https://c0.wallpaperflare.com/preview/129/130/329/apparel-attire-blur-boutique.jpg"
+                                                alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -85,19 +87,21 @@
                             <div class="row fill_height">
                                 <div class="col-lg-4 col-md-6 col-12 fill_height">
                                     <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Maecenas fermentum laoreet.</div>
+                                        <div class="banner_2_category"></div>
+                                        <div class="banner_2_title">State Art of Machines</div>
+                                        <div class="banner_2_text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Odio velit placeat aliquid in nisi et eveniet fugit porro, nulla temporibus
+                                            accusamus dolor atque aperiam voluptatem beatae esse maxime molestiae.</div>
                                         <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i>
                                         </div>
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
+                                        <div class="button banner_2_button"><a href="#">Read More</a></div>
                                     </div>
 
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-12 fill_height">
                                     <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt="">
+                                        <div class="banner_2_image"><img
+                                                src="https://i.ytimg.com/vi/YRFrfCPnPBk/maxresdefault.jpg" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +110,7 @@
                     </div>
                 </div>
 
-                <!-- Banner 2 Slider Item -->
+                <!-- Banner 3 Slider Item -->
                 <div class="owl-item">
                     <div class="banner_2_item">
                         <div class="container fill_height">
@@ -119,13 +123,15 @@
                                             Maecenas fermentum laoreet.</div>
                                         <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i>
                                         </div>
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
+                                        <div class="button banner_2_button"><a href="#">Read More</a></div>
                                     </div>
 
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-12 fill_height">
                                     <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt="">
+                                        <div class="banner_2_image"><img
+                                                src="http://i.huffpost.com/gen/1122399/images/o-BANGLADESH-BANGLADESH-GARMENT-WORK-facebook.jpg"
+                                                alt="">
                                         </div>
                                     </div>
                                 </div>

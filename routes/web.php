@@ -27,6 +27,13 @@ Route::get('/portfolio', function () {
 })->name('portfolio');
 
 
+Route::get('/contact', function () {
+    // return view('portfolio.master');
+
+    return view('portfolio.contactus');
+})->name('portfolio');
+
+
 
 Auth::routes();
 
