@@ -49,10 +49,10 @@
 
     <div class="contact_form">
         <div class="container">
-            <div class="row">
+            <div class="row shadow-lg border-gray-500">
                 <div class="col-lg-10 offset-lg-1">
-                    <div class="contact_form_container">
-                        <div class="contact_form_title">Get in Touch</div>
+                    <div class="contact_form_container card p-lg-5 bg-opacity-25">
+                        <div class="contact_form_title text-center text-primary">Get in Touch</div>
 
                         <form action="#" id="contact_form">
                             <div
@@ -68,7 +68,7 @@
                                 <textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4"
                                     placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
                             </div>
-                            <div class="contact_form_button">
+                            <div class="d-flex align-items-center justify-content-center contact_form_button">
                                 <button type="submit" class="button contact_submit_button">Send Message</button>
                             </div>
                         </form>
