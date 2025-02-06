@@ -2,98 +2,173 @@
 
 
 @section('content')
-    {{-- slider view  --}}
-    @if ($slider)
-        <div class="banner">
-            <div class="banner_background" style="background-image: url('{{ asset('images/banner_background.jpg') }}');">
-            </div>
-            <div class="container fill_height">
-                <div class="row fill_height">
-                    <div class="banner_product_image">
-                        <img src="{{ asset($slider->image_one) }}" alt="{{ $slider->product_name }}" style="height:400px">
-                    </div>
-                    <div class="col-lg-5 offset-lg-4 fill_height">
-                        <div class="banner_content">
-                            <h1 class="banner_text">{{ $slider->product_name }}</h1>
+    @php
+        $slider = DB::table('products')
+            ->join('brands', 'products.brand_id', 'brands.id')
+            ->where('main_slider', 1)
+            ->select('products.*', 'brands.brand_name')
+            ->first();
+    @endphp
 
+
+
+    <div class="banner">
+        <div class="banner_background" style="background-image:url(images/banner_background.jpg)"></div>
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="banner_product_image"><img src={{ asset($slider->image_one) }} alt="" style="height:400px">
+                </div>
+                <div class="col-lg-5 offset-lg-4 fill_height">
+                    <div class="banner_content">
+                        <h1 class="banner_text">{{ $slider->product_name }}</h1>
+                        @if ($slider->discount_price == null)
+                            <div class="banner_price">${{ $slider->selling_price }}</div>
+                        @else
                             <div class="banner_price">
-                                @if (is_null($slider->discount_price))
-                                    ${{ $slider->selling_price }}
-                                @else
-                                    <span>${{ $slider->selling_price }}</span> ${{ $slider->discount_price }}
-                                @endif
-                            </div>
+                                <span>${{ $slider->selling_price }}</span>${{ $slider->discount_price }}</div>
+                        @endif
 
-                            <div class="banner_product_name">{{ $slider->brand_name }}</div>
-                            <div class="button banner_button">
-                                <a
-                                    href="{{ url('product/details/' . $slider->id . '/' . Str::slug($slider->product_name)) }}">Show
-                                    Details</a>
-                            </div>
+                        <div class="banner_product_name">{{ $slider->brand_name }}</div>
+                        <div class="button banner_button"><a
+                                href="{{ url('product/details/' . $slider->id . '/' . $slider->product_name) }}">Show Details</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @endif
-    {{-- slider view  --}}
+    </div>
+
+
+    @php
+
+        $feature = DB::table('products')->where('status', 1)->orderBy('id', 'desc')->limit(20)->get();
+        $trand = DB::table('products')->where('status', 1)->where('trend', 1)->orderBy('id', 'desc')->limit(20)->get();
+        $best_rated = DB::table('products')
+            ->where('status', 1)
+            ->where('best_rated', 1)
+            ->orderBy('id', 'desc')
+            ->limit(20)
+            ->get();
+        $hot = DB::table('products')
+            ->join('brands', 'products.brand_id', 'brands.id')
+            ->where('products.status', 1)
+            ->where('products.hot_deal', 1)
+            ->orderBy('products.id', 'desc')
+            ->limit(5)
+            ->get();
+
+        $hot_new = DB::table('products')
+            ->where('products.status', 1)
+            ->where('products.hot_new', 1)
+            ->orderBy('products.id', 'desc')
+            ->limit(20)
+            ->get();
+
+    @endphp
+
 
     <div class="characteristics">
         <div class="container">
             <div class="row">
-                @foreach ($characteristics as $char)
-                    <div class="col-lg-3 col-md-6 char_col">
-                        <div class="char_item d-flex flex-row align-items-center justify-content-start">
-                            <div class="char_icon">
-                                <img src="{{ asset('fontend/images/' . $char['icon']) }}" alt="{{ $char['title'] }}">
-                            </div>
-                            <div class="char_content">
-                                <div class="char_title">{{ $char['title'] }}</div>
-                                <div class="char_subtitle">{{ $char['subtitle'] }}</div>
-                            </div>
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('fontend/images/char_1.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Free Delivery</div>
+                            <div class="char_subtitle">from $50</div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('fontend/images/char_2.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Free Delivery</div>
+                            <div class="char_subtitle">from $50</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('fontend/images/char_3.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Free Delivery</div>
+                            <div class="char_subtitle">from $50</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('fontend/images/char_4.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Free Delivery</div>
+                            <div class="char_subtitle">from $50</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-
     <!-- Deals of the week -->
+
     <div class="deals_featured">
         <div class="container">
             <div class="row">
                 <div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
 
-                    <!-- Hot Deals -->
+                    <!--Hot Deals -->
+
                     <div class="deals">
                         <div class="deals_title">Deals of the Week</div>
                         <div class="deals_slider_container">
+
+                            <!-- Deals Slider -->
                             <div class="owl-carousel owl-theme deals_slider">
                                 @foreach ($hot as $row)
+                                    <!-- Deals Item -->
                                     <div class="owl-item deals_item">
-                                        <div class="deals_image">
-                                            <img src="{{ asset($row->image_one) }}" alt="{{ $row->product_name }}">
+                                        <div class="deals_image"><img src="{{ asset($row->image_one) }}" alt="">
                                         </div>
                                         <div class="deals_content">
                                             <div class="deals_info_line d-flex flex-row justify-content-start">
-                                                <div class="deals_item_category">
-                                                    <a href="#">{{ $row->brand_name ?? 'Unknown Brand' }}</a>
-                                                </div>
-                                                @if ($row->discount_price)
-                                                    <div class="deals_item_price ml-auto">${{ $row->discount_price }}</div>
+                                                <div class="deals_item_category"><a
+                                                        href="#">{{ $row->brand_name }}</a></div>
+                                                @if ($row->discount_price == null)
                                                 @else
                                                     <div class="deals_item_price ml-auto">${{ $row->selling_price }}</div>
                                                 @endif
                                             </div>
                                             <div class="deals_info_line d-flex flex-row justify-content-start">
                                                 <div class="deals_item_name">{{ $row->product_name }}</div>
+                                                @if ($row->discount_price == null)
+                                                    <div class="deals_item_price ml-auto">${{ $row->selling_price }}</div>
+                                                @else
+                                                @endif
+
+                                                @if ($row->discount_price != null)
+                                                    <div class="deals_item_price ml-auto">${{ $row->discount_price }}</div>
+                                                @else
+                                                @endif
+
+
                                             </div>
                                             <div class="available">
                                                 <div class="available_line d-flex flex-row justify-content-start">
                                                     <div class="available_title">Available:
-                                                        <span>{{ $row->product_quantity }}</span>
-                                                    </div>
+                                                        <span>{{ $row->product_quantity }}</span></div>
                                                     <div class="sold_title ml-auto">Already sold: <span>28</span></div>
                                                 </div>
                                                 <div class="available_bar"><span style="width:17%"></span></div>
@@ -107,15 +182,15 @@
                                                 <div class="deals_timer_content ml-auto">
                                                     <div class="deals_timer_box clearfix" data-target-time="">
                                                         <div class="deals_timer_unit">
-                                                            <div class="deals_timer_hr"></div>
+                                                            <div id="deals_timer1_hr" class="deals_timer_hr"></div>
                                                             <span>hours</span>
                                                         </div>
                                                         <div class="deals_timer_unit">
-                                                            <div class="deals_timer_min"></div>
+                                                            <div id="deals_timer1_min" class="deals_timer_min"></div>
                                                             <span>mins</span>
                                                         </div>
                                                         <div class="deals_timer_unit">
-                                                            <div class="deals_timer_sec"></div>
+                                                            <div id="deals_timer1_sec" class="deals_timer_sec"></div>
                                                             <span>secs</span>
                                                         </div>
                                                     </div>
@@ -124,7 +199,9 @@
                                         </div>
                                     </div>
                                 @endforeach
+
                             </div>
+
                         </div>
 
                         <div class="deals_slider_nav_container">
@@ -134,21 +211,27 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Hot Deals End -->
 
-                    <!-- Featured Products -->
+                    <!--Hot Deals End -->
+
+                    <!-- Featured -->
                     <div class="featured">
                         <div class="tabbed_container">
                             <div class="tabs">
                                 <ul class="clearfix">
                                     <li class="active">Featured</li>
+
                                 </ul>
                                 <div class="tabs_line"><span></span></div>
                             </div>
 
+                            <!-- Feature Panel -->
                             <div class="product_panel panel active">
                                 <div class="featured_slider slider">
-                                    @foreach ($hot_new as $row)
+
+
+                                    @foreach ($feature as $row)
+                                        <!-- Product Show -->
                                         <div class="featured_slider_item">
                                             <div class="border_active"></div>
                                             <div
@@ -156,26 +239,33 @@
                                                 <div
                                                     class="product_image d-flex flex-column align-items-center justify-content-center">
                                                     <a
-                                                        href="{{ url('product/details/' . $row->id . '/' . $row->product_name) }}">
-                                                        <img src="{{ asset($row->image_one) }}"
-                                                            style="height: 120px; width: 140px;"
-                                                            alt="{{ $row->product_name }}">
-                                                    </a>
-                                                </div>
+                                                        href="{{ url('product/details/' . $row->id . '/' . $row->product_name) }}"><img
+                                                            src="{{ asset($row->image_one) }}"
+                                                            style="height: 120px; width: 140px;" alt=""></a></div>
                                                 <div class="product_content">
-                                                    <div class="product_price">
-                                                        @if ($row->discount_price)
-                                                            <span class="old_price">${{ $row->selling_price }}</span>
-                                                            ${{ $row->discount_price }}
-                                                        @else
-                                                            ${{ $row->selling_price }}
-                                                        @endif
-                                                    </div>
+
+                                                    @if ($row->discount_price == null)
+                                                        <div class="product_price">${{ $row->selling_price }}</div>
+                                                    @else
+                                                        <div class="product_price">
+                                                            ${{ $row->selling_price }}<span>${{ $row->discount_price }}</span>
+                                                        </div>
+                                                    @endif
+
+
                                                     <div class="product_name">
-                                                        <a
-                                                            href="{{ url('product/details/' . $row->id . '/' . $row->product_name) }}">{{ $row->product_name }}</a>
+                                                        <div><a
+                                                                href="{{ url('product/details/' . $row->id . '/' . $row->product_name) }}">{{ $row->product_name }}</a>
+                                                        </div>
                                                     </div>
+                                                    <!-- <div class="product_extras">
+                                                       
+                                                        <button  class="product_cart_button addcart" data-id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodal" onclick="productview(this.id)">Add to Cart</button>
+                                                    </div> -->
+
+
                                                     <div class="product_extras">
+
                                                         <button id="{{ $row->id }}"
                                                             class="product_cart_button addcart" data-toggle="modal"
                                                             data-target="#cartmodal" onclick="productview(this.id)">Add to
@@ -183,25 +273,29 @@
                                                     </div>
                                                 </div>
 
+
                                                 <button class="addwishlist" data-id="{{ $row->id }}">
                                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                 </button>
 
+
                                                 <ul class="product_marks">
-                                                    @if ($row->discount_price)
+
+                                                    @if ($row->discount_price == null)
+                                                        <li class="product_mark product_new">new</li>
+                                                    @else
                                                         <li class="product_mark product_new">
                                                             @php
-                                                                $discount = round(
-                                                                    (($row->selling_price - $row->discount_price) /
-                                                                        $row->selling_price) *
-                                                                        100,
-                                                                );
+                                                                $amount = $row->selling_price - $row->discount_price;
+                                                                $discount = ($amount / $row->selling_price) * 100;
                                                             @endphp
-                                                            {{ $discount }}% Off
+
+                                                            {{ intval($discount) }}%
+
                                                         </li>
-                                                    @else
-                                                        <li class="product_mark product_new">New</li>
                                                     @endif
+
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -209,15 +303,22 @@
                                 </div>
                                 <div class="featured_slider_dots_cover"></div>
                             </div>
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
-                    <!-- Featured Products End -->
 
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- Popular Categories -->
 
@@ -291,7 +392,6 @@
                         ->orderBy('id', 'desc')
                         ->limit(5)
                         ->get();
-
                 @endphp
 
                 @foreach ($mid as $mid)
@@ -299,27 +399,29 @@
                         <div class="banner_2_item">
                             <div class="container fill_height">
                                 <div class="row fill_height">
-                                    <div class="col-lg-6 col-md-6 fill_height">
+                                    <div class="col-lg-4 col-md-6 fill_height">
                                         <div class="banner_2_content">
-                                            <div class="banner_2_category" style="color: rgb(203, 160, 243)">
+                                            <div class="banner_2_category">
                                                 <h4>{{ $mid->category_name }}</h4>
                                             </div>
                                             <div class="banner_2_title">{{ $mid->product_name }}</div>
                                             <div class="banner_2_text">
-                                                <h4 style="color: black">{{ $mid->brand_name ?? '' }}</h4> <br><span
-                                                    style="color: black">TK.
-                                                    {{ $mid->selling_price }}</span>
+                                                <h4>{{ $mid->brand_name }}</h4> <br> {{ $row->selling_price }}
                                             </div>
+                                            <div class="rating_r rating_r_4 banner_2_rating">
+                                                <i></i><i></i><i></i><i></i><i></i></div>
                                             <div class="button banner_2_button"><a
                                                     href="{{ url('product/details/' . $mid->id . '/' . $mid->product_name) }}">Explore</a>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div class="col-lg-6 col-md-6 fill_height">
+                                    <div class="col-lg-8 col-md-6 fill_height">
                                         <div class="banner_2_image_container">
                                             <div class="banner_2_image"><img src="{{ asset($mid->image_one) }}"
-                                                    alt="">
+                                                    alt=""
+                                                    style="height: 400px;
+                                        width: 350px;">
                                             </div>
                                         </div>
                                     </div>
@@ -381,8 +483,7 @@
                                                         <a
                                                             href="{{ url('product/details/' . $row->id . '/' . $row->product_name) }}"><img
                                                                 src="{{ asset($row->image_one) }}" alt=""
-                                                                style="height: 120px; width: 100px;"></a>
-                                                    </div>
+                                                                style="height: 120px; width: 100px;"></a></div>
                                                     <div class="product_content">
 
                                                         @if ($row->discount_price == null)
@@ -505,8 +606,7 @@
                                                         <a
                                                             href="{{ url('product/details/' . $row->id . '/' . $row->product_name) }}"><img
                                                                 src="{{ asset($row->image_one) }}" alt=""
-                                                                style="height: 120px; width: 100px;"></a>
-                                                    </div>
+                                                                style="height: 120px; width: 100px;"></a></div>
                                                     <div class="product_content">
 
                                                         @if ($row->discount_price == null)
@@ -743,8 +843,7 @@
                                     <div class="trends_item is_new">
                                         <div
                                             class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{ asset($row->image_one) }}" alt="">
-                                        </div>
+                                            <img src="{{ asset($row->image_one) }}" alt=""></div>
                                         <div class="trends_content">
                                             <div class="trends_category"><a href="#">{{ $row->brand_name }}</a>
                                             </div>
