@@ -10,10 +10,10 @@ class CustomerController extends Controller
       public function ViewOrderForCustomer($id){
      $order = DB::table('orders')
         ->join('users','orders.user_id','users.id')   
-        ->select('orders.*','users.name','users.phone')
+        ->select('orders.*','users.*')
         ->where('orders.id',$id)
         ->first();
-        // dd($order);
+        dd($order);
 
      $shipping = DB::table('shipping')->where('order_id',$id)->first();
      // dd($shipping);
@@ -23,7 +23,11 @@ class CustomerController extends Controller
           ->select('order_details.*','products.product_code','products.image_one')
           ->where('order_details.order_id',$id)
           ->get();
-          // dd($details);
+
+    // $details = DB::table('orders')
+    //           ->join('order_details','orders.id','=','order_details.order_id')
+    //           ->join('users','orders.user_id','=','users.id')
+    //           ->first();
       return view('customer.order.customer_view_order',compact('order','shipping','details'));
   }
    

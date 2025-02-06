@@ -77,7 +77,7 @@
                                         <form action="#" class="header_search_form clearfix">
                                             <input type="search" required="required" class="header_search_input"
                                                 placeholder="Search for products...">
-                                            <div class="custom_dropdown">
+                                            {{-- <div class="custom_dropdown">
                                                 <div class="custom_dropdown_list">
                                                     <span class="custom_dropdown_placeholder clc">All Categories</span>
                                                     <i class="fas fa-chevron-down"></i>
@@ -90,9 +90,10 @@
                                                         <li><a class="clc" href="#">Smartphones</a></li>
                                                     </ul>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <button type="submit" class="header_search_button trans_300"
-                                                value="Submit"><img src="images/search.png" alt=""></button>
+                                                value="Submit"><img src={{ asset('images/search.png') }}
+                                                    alt=""></button>
                                         </form>
                                     </div>
                                 </div>
@@ -117,7 +118,7 @@
                                             class="cart_container d-flex flex-row align-items-center justify-content-end">
                                             <div class="cart_icon">
                                                 <img src="{{ asset('images/cart.png') }}" alt="">
-                                                <div class="cart_count"><span>10</span></div>
+                                                <div class="cart_count"><span>-</span></div>
                                             </div>
                                             <div class="cart_content">
                                                 <div class="cart_text"><a href="/product/cart">Cart</a></div>

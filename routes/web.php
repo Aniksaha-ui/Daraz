@@ -16,8 +16,11 @@ use App\Http\Controllers\HomepageController;
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 
-Route::get('/', 'HomepageController@index')->name('Home');
+// Route::get('/', 'HomepageController@index')->name('Home');
 
+Route::get('/', function () {
+    return view('pages.index');
+})->name('Home');
 
 
 
