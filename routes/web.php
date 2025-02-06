@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomepageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +16,10 @@
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 
-Route::get('/', function () {
-    // return view('portfolio.master');
+Route::get('/', 'HomepageController@index')->name('Home');
 
-    return view('pages.index');
-})->name('Home');
+
+
 
 Route::get('/portfolio', function () {
     // return view('portfolio.master');
