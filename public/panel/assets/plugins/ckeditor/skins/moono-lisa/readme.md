@@ -1,46 +1,91 @@
-"Moono-lisa" Skin
-=================
+# Laravel Ecommerce Platform README
 
-This skin has been made a **default skin** starting from CKEditor 4.6.0 and is maintained by the core developers.
+## Introduction
 
-For more information about skins, please check the [CKEditor Skin SDK](http://docs.cksource.com/CKEditor_4.x/Skin_SDK)
-documentation.
+Welcome to the **Laravel Ecommerce Platform** repository! This project is a feature-rich ecommerce solution built with **Laravel**. The platform includes an **Admin Panel** for managing products, orders, payments, and reports, and a **Customer Panel** for users to browse products, make orders, and track deliveries. Additionally, it integrates social media functionalities for login and product sharing.
 
-Features
--------------------
-"Moono-lisa" is a monochromatic skin, which offers a modern, flat and minimalistic look which blends very well in modern design.
-It comes with the following features:
+---
 
-- Chameleon feature with brightness.
-- High-contrast compatibility.
-- Graphics source provided in SVG.
+## Purpose
 
-Directory Structure
--------------------
+The purpose of this platform is to:
 
-CSS parts:
-- **editor.css**: the main CSS file. It's simply loading several other files, for easier maintenance,
-- **mainui.css**: the file contains styles of entire editor outline structures,
-- **toolbar.css**: the file contains styles of the editor toolbar space (top),
-- **richcombo.css**: the file contains styles of the rich combo ui elements on toolbar,
-- **panel.css**: the file contains styles of the rich combo drop-down, it's not loaded
-until the first panel open up,
-- **elementspath.css**: the file contains styles of the editor elements path bar (bottom),
-- **menu.css**: the file contains styles of all editor menus including context menu and button drop-down,
-it's not loaded until the first menu open up,
-- **dialog.css**: the CSS files for the dialog UI, it's not loaded until the first dialog open,
-- **reset.css**: the file defines the basis of style resets among all editor UI spaces,
-- **preset.css**: the file defines the default styles of some UI elements reflecting the skin preference,
-- **editor_XYZ.css** and **dialog_XYZ.css**: browser specific CSS hacks.
+-   Provide an intuitive and seamless shopping experience for customers.
+-   Allow administrators full control over managing products, orders, and payments.
+-   Integrate social media features to enhance user engagement and marketing opportunities.
 
-Other parts:
-- **skin.js**: the only JavaScript part of the skin that registers the skin, its browser specific files and its icons and defines the Chameleon feature,
-- **images/**: contains a fill general used images,
-- **dev/**: contains SVG and PNG source of the skin icons.
+---
 
-License
--------
+## Features
 
-Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+### Admin Panel
 
-For licensing, see LICENSE.md or [http://ckeditor.com/license](http://ckeditor.com/license)
+1. **Manage Categories, Subcategories, Brands, and Products**
+
+    - Create, edit, and delete categories, subcategories, and brands.
+    - Add, edit, and delete product details (name, description, price, images, stock, etc.).
+
+2. **Order Management**
+
+    - Accept customer payments through various gateways.
+    - Set and manage multiple delivery methods.
+
+3. **Dashboard**
+
+    - View transaction history, including successful and failed payments.
+    - View product sales summary by quantity sold.
+    - Track total orders (monthly, yearly, daily) along with their status.
+
+4. **Reports**
+
+    - Summaries for total orders, total deliveries, and current month deliveries.
+
+5. **Blog Management**
+    - Admin can create, edit, and delete blog posts to keep customers updated on promotions and news.
+
+---
+
+### Customer Panel
+
+1. **View Products & Details**
+
+    - Browse products, filter by category, brand, or price.
+    - View detailed product pages, including descriptions, specifications, prices, and images.
+
+2. **Order Products**
+
+    - Add products to the cart, proceed to checkout, and make payments using different payment gateways.
+    - Receive an order confirmation after successful purchase.
+
+3. **Customer Dashboard**
+
+    - View recent orders, detailed order information, and download invoices.
+    - Track the delivery status of orders in real-time.
+
+4. **Language Setup**
+
+    - Ability for customers to choose their preferred language for the website.
+
+5. **Social Login**
+
+    - Customers can log in via Facebook, Google, or Twitter.
+
+6. **Product Share to Social Media**
+    - Customers can easily share product pages to social media platforms such as Facebook, Instagram, and Twitter.
+
+---
+
+## Getting Started
+
+This section will guide you through the installation process to get the **Laravel Ecommerce Platform** running locally.
+
+### Prerequisites
+
+Ensure you have the following software installed before proceeding:
+
+-   **PHP** (version 7.4 or higher)
+-   **Composer** (PHP dependency manager)
+-   **MySQL** or **MariaDB** (for the database)
+-   **Laravel** (the PHP framework)
+-   **Node.js and npm/yarn** (for frontend dependencies)
+-   **Payment Gateway API Keys** (e.g., Stripe, PayPal)

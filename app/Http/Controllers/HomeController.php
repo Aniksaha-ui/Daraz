@@ -30,7 +30,8 @@ class HomeController extends Controller
         ->where('user_id', Auth::id())
         ->select('orders.*','order_details.product_name')
         ->orderBy('id', 'DESC')
-        ->limit(10)->get();
+        ->get();
+
 return view('home',compact('orders'));
     }
 
