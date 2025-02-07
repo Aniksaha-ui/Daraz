@@ -245,8 +245,7 @@
                                 <div class="footer_title">Got Question? Call Us 24/7</div>
                                 <div class="footer_phone">01628781323</div>
                                 <div class="footer_contact_text">
-                                    <p>17 Princess Road, London</p>
-                                    <p>Grester London NW18JR, UK</p>
+                                    <p>South Bonosree, Dhaka</p>
                                 </div>
                                 <div class="footer_social">
                                     <ul>

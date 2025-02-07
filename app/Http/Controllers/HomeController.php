@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -23,7 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $orders = DB::table('orders')
+        ->join('order_details','orders.id',"=","order_details.order_id")
+        ->where('user_id', Auth::id())
+        ->select('orders.*','order_details.product_name')
+        ->orderBy('id', 'DESC')
+        ->limit(10)->get();
+return view('home',compact('orders'));
     }
 
     public function logout(){
