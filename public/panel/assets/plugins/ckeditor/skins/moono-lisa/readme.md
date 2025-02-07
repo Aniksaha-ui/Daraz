@@ -89,3 +89,5 @@ Ensure you have the following software installed before proceeding:
 -   **Laravel** (the PHP framework)
 -   **Node.js and npm/yarn** (for frontend dependencies)
 -   **Payment Gateway API Keys** (e.g., Stripe, PayPal)
+-   ** admin login : sahaanik1045@gmail.com
+-   **admin password : sahaanik
