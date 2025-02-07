@@ -51,7 +51,7 @@ class PaymentController extends Controller
 				$charge = \Stripe\Charge::create([
 				  'amount' => $request->total*100,
 				  'currency' => 'usd',
-				  'description' => 'XIXOTECH Details',
+				  'description' => 'Ecovani  Details',
 				  'source' => $token,
 				  'metadata' => ['order_id' => uniqid()],
 				]);

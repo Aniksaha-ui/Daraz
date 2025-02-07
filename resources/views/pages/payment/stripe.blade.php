@@ -1,21 +1,13 @@
 @extends('welcome')
 
 @section('content')
-    @include('pages.menubar')
-
     @php
         $setting = DB::table('settings')->first();
         $charge = $setting->shipping_charge;
         $vat = $setting->vat;
         $cart = Cart::Content();
     @endphp
-
-
     <style>
-        /**
-         * The CSS shown here will not be introduced in the Quickstart guide, but shows
-         * how you can use CSS to style your Element's container.
-         */
         .StripeElement {
             box-sizing: border-box;
 
@@ -45,65 +37,48 @@
             background-color: #fefde5 !important;
         }
     </style>
-
-
-
-
-
-
-
-
-
-
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_styles.css') }} ">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_responsive.css') }}">
 
     <div class="contact_form">
         <div class="container">
             <div class="row">
+                <div class="card p-4 col-lg-10">
+                    <h6 class="text-primary text-center">Card Information</h6>
+
+                    <form action="{{ route('stripe.charge') }}" method="post" id="payment-form">
+                        @csrf
+                        <div class="form-row">
+                            <label for="card-element" class="text-center text-primary">
+                                Stripe Payment
+                            </label>
+                            <div id="card-element">
+                                <!-- A Stripe Element will be inserted here. -->
+                            </div>
+
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                        </div><br>
+
+                        <input type="hidden" name="shipping" value="{{ $charge }} ">
+                        <input type="hidden" name="vat" value="{{ $vat }} ">
+                        <input type="hidden" name="total" value="{{ Cart::Subtotal() + $charge + $vat }} ">
+
+                        <input type="hidden" name="ship_name" value="{{ $data['name'] }} ">
+                        <input type="hidden" name="ship_phone" value="{{ $data['phone'] }} ">
+                        <input type="hidden" name="ship_email" value="{{ $data['email'] }} ">
+                        <input type="hidden" name="ship_address" value="{{ $data['address'] }} ">
+                        <input type="hidden" name="ship_city" value="{{ $data['city'] }} ">
+                        <input type="hidden" name="payment_type" value="{{ $data['payment'] }} ">
 
 
 
 
-
-
-                <div class="col-lg-10" style="border: 1px solid grey; padding: 20px; border-radius: 25px;">
-                    <div class="contact_form_container">
-                        <div class="contact_form_title text-center">Shipping Address</div>
-
-                        <form action="{{ route('stripe.charge') }}" method="post" id="payment-form">
-                            @csrf
-                            <div class="form-row">
-                                <label for="card-element">
-                                    Credit or debit card
-                                </label>
-                                <div id="card-element">
-                                    <!-- A Stripe Element will be inserted here. -->
-                                </div>
-
-                                <!-- Used to display form errors. -->
-                                <div id="card-errors" role="alert"></div>
-                            </div><br>
-
-                            <input type="hidden" name="shipping" value="{{ $charge }} ">
-                            <input type="hidden" name="vat" value="{{ $vat }} ">
-                            <input type="hidden" name="total" value="{{ Cart::Subtotal() + $charge + $vat }} ">
-
-                            <input type="hidden" name="ship_name" value="{{ $data['name'] }} ">
-                            <input type="hidden" name="ship_phone" value="{{ $data['phone'] }} ">
-                            <input type="hidden" name="ship_email" value="{{ $data['email'] }} ">
-                            <input type="hidden" name="ship_address" value="{{ $data['address'] }} ">
-                            <input type="hidden" name="ship_city" value="{{ $data['city'] }} ">
-                            <input type="hidden" name="payment_type" value="{{ $data['payment'] }} ">
+                        <button class="btn btn-info">Pay Now</button>
+                    </form>
 
 
 
-
-                            <button class="btn btn-info">Pay Now</button>
-                        </form>
-
-
-                    </div>
                 </div>
 
 
@@ -130,12 +105,12 @@
         // (Note that this demo uses a wider set of styles than the guide below.)
         var style = {
             base: {
-                color: '#32325d',
+                color: 'blue',
                 fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
                 fontSmoothing: 'antialiased',
                 fontSize: '16px',
                 '::placeholder': {
-                    color: '#aab7c4'
+                    color: 'blue'
                 }
             },
             invalid: {

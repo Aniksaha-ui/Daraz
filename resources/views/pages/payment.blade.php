@@ -91,7 +91,7 @@
                 <!-- Shipping Address Section -->
                 <div class="col-lg-5">
                     <div class="border p-4 rounded shadow-sm bg-white">
-                        <h4 class="text-center mb-4">Shipping Address</h4>
+                        <h4 class="text-center text-primary mb-4">Shipping Address</h4>
                         <form action="{{ route('payment.process') }}" method="post">
                             @csrf
                             <div class="mb-3">
@@ -126,11 +126,11 @@
                                     <img src="{{ asset('fontend/images/stripe.png') }}" class="img-fluid"
                                         style="max-width: 80px;">
                                 </label>
-                                <label class="form-check-label">
+                                {{-- <label class="form-check-label">
                                     <input type="radio" name="payment" value="paypal">
                                     <img src="{{ asset('fontend/images/paypal.png') }}" class="img-fluid"
                                         style="max-width: 80px;">
-                                </label>
+                                </label> --}}
                                 <label class="form-check-label">
                                     <input type="radio" name="payment" value="cashondelivery">
                                     <img src="{{ asset('fontend/images/cashondelivery.png') }}" class="img-fluid"
