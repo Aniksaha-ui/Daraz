@@ -1,105 +1,106 @@
 @extends('welcome')
 
 @section('content')
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/cart_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/cart_responsive.css') }}">
+    <!-- Cart -->
+
+    <div class="cart_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cart_container p-4 border rounded shadow-sm bg-white">
+                        <h3 class="text-center mb-4">Shopping Cart</h3>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Color</th>
+                                        <th>Size</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($cart as $row)
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset($row->options->image) }}" class="img-fluid rounded"
+                                                    style="width: 70px; height: 70px;">
+                                            </td>
+                                            <td>{{ $row->name }}</td>
+                                            <td>
+                                                @if ($row->options->color)
+                                                    {{ $row->options->color }}
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($row->options->size)
+                                                    {{ $row->options->size }}
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form method="post" action="{{ route('update.cartitem') }}"
+                                                    class="d-flex align-items-center justify-content-center">
+                                                    @csrf
+                                                    <input type="hidden" name="productid" value="{{ $row->rowId }}">
+                                                    <input type="number" name="qty" value="{{ $row->qty }}"
+                                                        class="form-control text-center" style="width: 60px;">
+                                                    <button type="submit" class="btn btn-success btn-sm ms-2">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>${{ $row->price }}</td>
+                                            <td><strong>${{ $row->price * $row->qty }}</strong></td>
+                                            <td>
+                                                <a href="{{ url('remove/cart/' . $row->rowId) }}"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Grand Total</td>
+                                        <td>${{ Cart::subtotal() ?? 0 }}</td>
+                                        <td></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Order Total -->
+
+                        <!-- Cart Buttons -->
+                        @if (Cart::subtotal() > 0)
+                            <div class="cart_buttons mt-4 d-flex justify-content-between">
+                                <button type="button" class="btn btn-danger">All Cancel</button>
+                                <a href="{{ route('user.checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/cart_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/cart_responsive.css')}}">
-	<!-- Cart -->
-
-	<div class="cart_section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="cart_container">
-						<div class="cart_title">Shopping Cart</div>
-						<div class="cart_items">
-							<ul class="cart_list">
-                              
-                              @foreach($cart as $row)
-
-		<li class="cart_item clearfix">
-			<div class="cart_item_image text-center"><br><img src="{{ asset($row->options->image) }} " style="width: 70px; width: 70px;" alt=""></div>
-			<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-				<div class="cart_item_name cart_info_col">
-					<div class="cart_item_title">Name</div>
-					<div class="cart_item_text">{{ $row->name  }}</div>
-				</div>
-
-				@if($row->options->color == NULL)
-
-                @else
-				<div class="cart_item_color cart_info_col">
-					<div class="cart_item_title">Color</div>
-					<div class="cart_item_text"> {{ $row->options->color }}</div>
-				</div>
-				 @endif
- 
-
-                @if($row->options->size == NULL)
-
-                @else
-                <div class="cart_item_color cart_info_col">
-					<div class="cart_item_title">Size</div>
-					<div class="cart_item_text"> {{ $row->options->size }}</div>
-				</div>
-                @endif
-                  
-                
-				<div class="cart_item_quantity cart_info_col">
-					<div class="cart_item_title">Quantity</div><br> 
-
-           <form method="post" action="{{ route('update.cartitem') }}">
-           	@csrf
-           	<input type="hidden" name="productid" value="{{ $row->rowId }}">
-           	<input type="number" name="qty" value="{{ $row->qty }}" style="width: 50px;">
-           	<button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check-square"></i> </button>
- 
-           </form>  
-				</div>
-
-
-
-				<div class="cart_item_price cart_info_col">
-					<div class="cart_item_title">Price</div>
-					<div class="cart_item_text">${{ $row->price }}</div>
-				</div>
-				<div class="cart_item_total cart_info_col">
-					<div class="cart_item_title">Total</div>
-					<div class="cart_item_text">${{ $row->price*$row->qty }}</div>
-				</div>
-
-                <div class="cart_item_total cart_info_col">
-					<div class="cart_item_title">Action</div><br>
-	 <a href="{{ url('remove/cart/'.$row->rowId ) }}" class="btn btn-sm btn-danger">x</a>
-				</div>
-
-
-
-			</div>
-		</li>
-								@endforeach
-							</ul>
-						</div>
-						
-						<!-- Order Total -->
-						<div class="order_total">
-							<div class="order_total_content text-md-right">
-								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount">${{ Cart::subtotal() }}</div>
-							</div>
-						</div>
-
-						<div class="cart_buttons">
-							<button type="button" class="button cart_button_clear">All Cancel</button>
-							 <a href="{{route('user.checkout')}}"  class="button cart_button_checkout">Checkout</a> 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-<script src="{{ asset('public/frontend/js/cart_custom.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/cart_custom.js') }}"></script>
 @endsection

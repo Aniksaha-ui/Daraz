@@ -1,158 +1,116 @@
 @extends('welcome')
 
 @section('content')
+    @php
+        $setting = DB::table('settings')->first();
+        $charge = $setting->shipping_charge;
+        $vat = $setting->vat;
+    @endphp
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/cart_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontend/styles/cart_responsive.css') }}">
+    <!-- Cart -->
 
-@php
-$setting = DB::table('settings')->first();
-$charge = $setting->shipping_charge; 
-$vat = $setting->vat; 
-@endphp
+    <div class="cart_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cart_title text-primary text-center">Have Any Coupon?</div>
+                    <p class="text-success text-center">Have no coupon? just subscribe and collect your coupon!!!</p>
+                    <!-- Coupon Section -->
+                    <div class="row mt-4 g-3">
+                        <div class="col-lg-6">
+                            @if (Session::has('coupon'))
+                                <div class="card border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <i class="fas fa-tag mr-2"></i> Coupon Applied
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <strong>{{ Session::get('coupon')['name'] }}</strong>
+                                                <p class="mb-0 text-muted">Discount:
+                                                    ${{ Session::get('coupon')['discount'] }}</p>
+                                            </div>
+                                            <a href="{{ route('coupon.remove') }}" class="btn btn-outline-danger btn-sm">
+                                                <i class="fas fa-times"></i> Remove
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="card">
+                                    <div class="card-header bg-primary text-white">
+                                        <i class="fas fa-ticket-alt mr-2"></i> Apply Coupon
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="post" action="{{ route('apply.coupon') }}" class="form-inline">
+                                            @csrf
+                                            <div class="form-group mr-3 mb-2 flex-grow-1">
+                                                <input type="text" name="coupon" class="form-control w-100"
+                                                    placeholder="Enter coupon code" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger mb-2">
+                                                <i class="fas fa-check mr-2"></i>Apply
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-lg-5 mt-lg-0 mt-md-0 mt-2">
+                            <div class="card border-primary">
+                                <div class="card-header bg-primary text-white">
+                                    <i class="fas fa-receipt mr-2"></i> Order Summary
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    @if (Session::has('coupon'))
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Subtotal
+                                            <span>${{ Session::get('coupon')['balance'] }}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Discount ({{ Session::get('coupon')['name'] }})
+                                            <span class="text-danger">-${{ Session::get('coupon')['discount'] }}</span>
+                                        </li>
+                                    @else
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Subtotal
+                                            <span>${{ Cart::subtotal() }}</span>
+                                        </li>
+                                    @endif
 
-<link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/cart_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('fontend/styles/cart_responsive.css')}}">
-	<!-- Cart -->
-
-	<div class="cart_section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="cart_container">
-						<div class="cart_title">Checkout</div>
-						<div class="cart_items">
-							<ul class="cart_list">
-                              
-                              @foreach($cart as $row)
-
-		<li class="cart_item clearfix">
-			<div class="cart_item_image text-center"><br><img src="{{ asset($row->options->image) }} " style="width: 70px; width: 70px;" alt=""></div>
-			<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-				<div class="cart_item_name cart_info_col">
-					<div class="cart_item_title">Name</div>
-					<div class="cart_item_text">{{ $row->name  }}</div>
-				</div>
-
-				@if($row->options->color == NULL)
-
-                @else
-				<div class="cart_item_color cart_info_col">
-					<div class="cart_item_title">Color</div>
-					<div class="cart_item_text"> {{ $row->options->color }}</div>
-				</div>
-				 @endif
- 
-
-                @if($row->options->size == NULL)
-
-                @else
-                <div class="cart_item_color cart_info_col">
-					<div class="cart_item_title">Size</div>
-					<div class="cart_item_text"> {{ $row->options->size }}</div>
-				</div>
-                @endif
-                  
-
-				<div class="cart_item_quantity cart_info_col">
-					<div class="cart_item_title">Quantity</div><br> 
-
-           <form method="post" action="{{ route('update.cartitem') }}">
-           	@csrf
-           	<input type="hidden" name="productid" value="{{ $row->rowId }}">
-           	<input type="number" name="qty" value="{{ $row->qty }}" style="width: 50px;">
-           	<button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check-square"></i> </button>
- 
-           </form>  
-				</div>
-
-
-
-				<div class="cart_item_price cart_info_col">
-					<div class="cart_item_title">Price</div>
-					<div class="cart_item_text">${{ $row->price }}</div>
-				</div>
-				<div class="cart_item_total cart_info_col">
-					<div class="cart_item_title">Total</div>
-					<div class="cart_item_text">${{ $row->price*$row->qty }}</div>
-				</div>
-
-                <div class="cart_item_total cart_info_col">
-					<div class="cart_item_title">Action</div><br>
-	 <a href="{{ url('remove/cart/'.$row->rowId ) }}" class="btn btn-sm btn-danger">x</a>
-				</div>
-
-
-
-			</div>
-		</li>
-								@endforeach
-							</ul>
-						</div>
-						
-						<!-- Order Total -->
-					 
-          <div class="order_total_content" style="padding: 15px;">
-         @if(Session::has('coupon'))
-
-         @else
-
-          <h5 style="margin-left: 20px;"> Apply Coupon </h5>
-          	<form method="post" action="{{ route('apply.coupon') }}">
-          		@csrf
-          		<div class="form group col-lg-4">
-          			<input type="text" name="coupon" class="form-control" required="" placeholder="Enter Your Coupon"> 
-          		</div><br>
-         <button type="submit" class="btn btn-danger ml-2">Submit      	
-         </button> 		
-          	</form>
-          	@endif
-          	
-          </div>
-
-          <ul class="list-group col-lg-4" style="float: right;">
-          	@if(Session::has('coupon'))
-          	<li class="list-group-item">Subtotal : <span style="float: right;">
-          	${{ Session::get('coupon')['balance'] }} </span> </li>
-          	 <li class="list-group-item">Coupon : ({{ Session::get('coupon')['name'] }} )
-              <a href="{{ route('coupon.remove') }}" class="btn btn-danger btn-sm">X</a>
-           <span style="float: right;">${{ Session::get('coupon')['discount'] }} </span> </li>
-          	@else
-          	<li class="list-group-item">Subtotal : <span style="float: right;">
-          	${{  Cart::Subtotal() }} </span> </li>
-          	@endif
-          	
-          
-
-          	<li class="list-group-item">Shiping Charge : <span style="float: right;">${{ $charge  }} </span> </li>
-          	<li class="list-group-item">Vat : <span style="float: right;">${{ $vat }} </span> </li>
-          	@if(Session::has('coupon'))
-          	<li class="list-group-item">Total : <span style="float: right;">${{ Session::get('coupon')['balance'] + $charge + $vat }} </span> </li>
-          	@else
-      <li class="list-group-item">Total : <span style="float: right;">${{ Cart::Subtotal() + $charge + $vat }} </span> </li>
-          	@endif
-          
-          	
-          </ul>
-           </div>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Shipping
+                                        <span>${{ $charge }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        VAT
+                                        <span>${{ $vat }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+                                        <strong>Total</strong>
+                                        <strong>
+                                            ${{ Session::has('coupon')
+                                                ? Session::get('coupon')['balance'] + $charge + $vat
+                                                : Cart::subtotal() + $charge + $vat }}
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-             </div>
+            <div class="cart_buttons" style="margin-right: 90px;">
+                <a href="{{ route('payment.step') }}" class="button cart_button_checkout">Continue</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
 
-
-
-
-
-
-
-						<div class="cart_buttons">
-							<button type="button" class="button cart_button_clear">All Cancel</button>
-	 <a href="{{route('payment.step')}}"  class="button cart_button_checkout">Final Step</a> 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-<script src="{{ asset('public/frontend/js/cart_custom.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/cart_custom.js') }}"></script>
 @endsection
