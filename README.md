@@ -1,78 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Laravel Ecommerce Platform README
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Introduction
 
-## About Laravel
+Welcome to the **Laravel Ecommerce Platform** repository! This project is a feature-rich ecommerce solution built with **Laravel**. The platform includes an **Admin Panel** for managing products, orders, payments, and reports, and a **Customer Panel** for users to browse products, make orders, and track deliveries. Additionally, it integrates social media functionalities for login and product sharing.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Purpose
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The purpose of this platform is to:
 
-## Learning Laravel
+-   Provide an intuitive and seamless shopping experience for customers.
+-   Allow administrators full control over managing products, orders, and payments.
+-   Integrate social media features to enhance user engagement and marketing opportunities.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Features
 
-## Laravel Sponsors
+### Admin Panel
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. **Manage Categories, Subcategories, Brands, and Products**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+    - Create, edit, and delete categories, subcategories, and brands.
+    - Add, edit, and delete product details (name, description, price, images, stock, etc.).
 
-## Contributing
+2. **Order Management**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    - Accept customer payments through various gateways.
+    - Set and manage multiple delivery methods.
 
-## Code of Conduct
+3. **Dashboard**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    - View transaction history, including successful and failed payments.
+    - View product sales summary by quantity sold.
+    - Track total orders (monthly, yearly, daily) along with their status.
 
-## Security Vulnerabilities
+4. **Reports**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    - Summaries for total orders, total deliveries, and current month deliveries.
 
-## License
+5. **Blog Management**
+    - Admin can create, edit, and delete blog posts to keep customers updated on promotions and news.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+### Customer Panel
+
+1. **View Products & Details**
+
+    - Browse products, filter by category, brand, or price.
+    - View detailed product pages, including descriptions, specifications, prices, and images.
+
+2. **Order Products**
+
+    - Add products to the cart, proceed to checkout, and make payments using different payment gateways.
+    - Receive an order confirmation after successful purchase.
+
+3. **Customer Dashboard**
+
+    - View recent orders, detailed order information, and download invoices.
+    - Track the delivery status of orders in real-time.
+
+4. **Language Setup**
+
+    - Ability for customers to choose their preferred language for the website.
+
+5. **Social Login**
+
+    - Customers can log in via Facebook, Google, or Twitter.
+
+6. **Product Share to Social Media**
+    - Customers can easily share product pages to social media platforms such as Facebook, Instagram, and Twitter.
+
+---
+
+## Getting Started
+
+This section will guide you through the installation process to get the **Laravel Ecommerce Platform** running locally.
+
+### Prerequisites
+
+Ensure you have the following software installed before proceeding:
+
+-   **PHP** (version 7.4 or higher)
+-   **Composer** (PHP dependency manager)
+-   **MySQL** or **MariaDB** (for the database)
+-   **Laravel** (the PHP framework)
+-   **Node.js and npm/yarn** (for frontend dependencies)
+-   **Payment Gateway API Keys** (e.g., Stripe, PayPal)
