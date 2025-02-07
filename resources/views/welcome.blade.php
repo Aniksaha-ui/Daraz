@@ -206,19 +206,26 @@
                                 </div>
 
                                 <!-- Cart -->
-                                <div class="cart">
-                                    <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                        <div class="cart_icon">
-                                            <img src="{{ asset('fontend/images/cart.png') }}" alt="">
-                                            <div class="cart_count"><span>{{ Cart::count() }}</span></div>
-                                        </div>
-                                        <div class="cart_content">
-                                            <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
-                                            <div class="cart_price" style="color: black;">Tk.{{ Cart::subtotal() }}
+                                <a href="{{ route('show.cart') }}">
+                                    <div class="cart">
+                                        <div
+                                            class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                            <div class="cart_icon">
+                                                <img src="{{ asset('fontend/images/cart.png') }}" alt="">
+                                                <div class="cart_count"><span>{{ Cart::count() }}</span></div>
+                                            </div>
+                                            <div class="cart_content">
+                                                <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a>
+                                                </div>
+                                                <div class="cart_price" style="color: black;">
+                                                    Tk.{{ Cart::subtotal() }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+
+                                </a>
+
                             </div>
                         </div>
                     </div>
